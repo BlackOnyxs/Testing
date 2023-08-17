@@ -1,0 +1,35 @@
+name: Deployment Pipeline
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          sparse-checkout: 0
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install dependencies 
+        run: npm ci
+      - name: Build
+        run: npm run build
+      - name: Tests
+        run: npm run test
+      - name: E2E Test
+        uses: cypress-io/github-action@v5
+        with:
+          command: npm run test:e2e
+          start: npm run test
+          wait-on: http://localhost:3000
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v20 
+        with:
+          vercel-token: ${{ secrets.VERCEL_API_TOKEN }} 
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID}}  
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID}} 
+          working-directory: ./sub-directory
