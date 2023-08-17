@@ -11,10 +11,6 @@ import { Navbar } from './Navbar';
 export const MainApp = () => {
   return (
     <UserProvider>
-        {/* <h1>MainApp</h1> */}
-        {/* <Link to="/">Home</Link>
-        <Link to="/about">About</Link>
-        <Link to="/login">Login</Link> */}
         <Navbar />
         <hr />
 
@@ -23,8 +19,6 @@ export const MainApp = () => {
           <Route path="/" element={ <HomePage /> } />
           <Route path="about" element={ <AboutPage /> } />
           <Route path="login" element={ <LoginPage /> } />
-
-          {/* <Route path="/*" element={ <LoginPage /> } /> */}
           <Route path="/*" element={ <Navigate to="/about" /> } />
 
         </Routes>
