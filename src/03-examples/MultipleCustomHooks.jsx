@@ -1,3 +1,4 @@
+import React from 'react'
 import { useCounter, useFetch } from '../hooks';
 import { LoadingQuote, Quote } from './';
 

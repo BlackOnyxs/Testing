@@ -1,9 +1,11 @@
-
-import { screen, render } from "@testing-library/react";
+/**
+ * @jest-environment jsdom
+ */
+import React from 'react';
+import { screen, render, fireEvent } from "@testing-library/react";
 import { MultipleCustomHooks } from "../../src/03-examples";
 import { useFetch } from '../../src/hooks/useFetch';
 import { useCounter } from '../../src/hooks/useCounter';
-import { fireEvent } from "@testing-library/react/types";
 
 jest.mock('../../src/hooks/useFetch');
 jest.mock('../../src/hooks/useCounter');
